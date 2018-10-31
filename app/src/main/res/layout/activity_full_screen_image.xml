@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorBlack"
+        tools:context="dev.whaabaam.com.ui.fullscreenimage.FullScreenImageActivity">
+
+        <dev.whaabaam.com.utils.ZoomableImageView
+            android:id="@+id/imageViewFull"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:transitionName="simple_transition"
+            tools:targetApi="lollipop" />
+
+        <ProgressBar
+            android:id="@+id/progress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center" />
+
+    </FrameLayout>
+</layout>

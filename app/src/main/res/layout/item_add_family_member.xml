@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:bind="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="model"
+            type="dev.whaabaam.com.data.model.other.ConnectionsAddFamilyData" />
+    </data>
+
+
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginBottom="@dimen/margin_4dp"
+        android:layout_marginLeft="@dimen/corner_10dp"
+        android:layout_marginRight="@dimen/corner_10dp"
+        android:layout_marginTop="@dimen/margin_8dp"
+        android:clipToPadding="true"
+        android:foreground="?android:attr/selectableItemBackground"
+        app:cardCornerRadius="2dp"
+        app:cardElevation="2dp"
+        app:cardPreventCornerOverlap="true"
+        app:contentPaddingBottom="@dimen/margin_4dp"
+        app:contentPaddingLeft="@dimen/margin_8dp"
+        app:contentPaddingRight="@dimen/margin_8dp"
+        app:contentPaddingTop="@dimen/margin_4dp">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <android.support.constraint.ConstraintLayout
+                android:id="@+id/userDataView"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="start">
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/imageView7"
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
+                    android:src="@drawable/dummy_profile"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    bind:profile_image="@{model.image_path+`/`+model.image}" />
+
+                <TextView
+                    android:id="@+id/textView15"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:fontFamily="@font/poppins_bold"
+                    android:includeFontPadding="false"
+                    android:text="@{model.first_name + ` `+model.last_name}"
+                    android:textColor="@color/colorBlack"
+                    app:layout_constraintBottom_toBottomOf="@+id/imageView7"
+                    app:layout_constraintStart_toEndOf="@+id/imageView7"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_chainStyle="packed"
+                    tools:text="Name" />
+            </android.support.constraint.ConstraintLayout>
+
+            <TextView
+                android:id="@+id/btnAdd"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end|center"
+                android:fontFamily="@font/poppins"
+                android:padding="8dp"
+                android:text="Add"
+                android:textAllCaps="true"
+                android:textColor="@color/colorOrange"
+                android:textStyle="bold" />
+        </FrameLayout>
+
+    </android.support.v7.widget.CardView>
+</layout>

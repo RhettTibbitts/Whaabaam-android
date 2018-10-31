@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="dev.whaabaam.com.ui.permission.PermissionViewModel" />
+
+        <import type="android.view.View" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="@dimen/margin_16dp"
+        tools:context="dev.whaabaam.com.ui.permission.PermissionActivity">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:src="@drawable/logo" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/poppins"
+            android:gravity="center"
+            android:text="Whaabaam needs your consent to access some of the features your device, to present you with seamless user experience.  " />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:drawablePadding="40dp"
+            android:drawableStart="@drawable/ic_camera"
+            android:fontFamily="@font/poppins"
+            android:gravity="center_vertical"
+            android:text="Camera Permission" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:drawablePadding="40dp"
+            android:drawableStart="@drawable/ic_location"
+            android:fontFamily="@font/poppins"
+            android:gravity="center_vertical"
+            android:text="GPS Location" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:drawablePadding="40dp"
+            android:drawableStart="@drawable/ic_folder"
+            android:fontFamily="@font/poppins"
+            android:gravity="center_vertical"
+            android:text="Device Storage" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:background="@drawable/btn_bg_organge"
+            android:onClick="@{viewModel.onGrantPermissionClick()}"
+            android:text="I understand"
+            android:textColor="@color/colorWhite"
+            android:visibility="@{viewModel.allGranted?View.GONE:View.VISIBLE}" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/orange_counter_bg"
+            android:onClick="@{viewModel.onProceedClick()}"
+            android:text="Proceed"
+            android:textColor="@color/colorWhite"
+            android:visibility="@{viewModel.allGranted?View.VISIBLE:View.GONE}" />
+
+    </LinearLayout>
+</layout>

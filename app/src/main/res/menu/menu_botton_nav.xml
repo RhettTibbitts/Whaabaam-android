@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/nav_home"
+        android:title=""
+        android:icon="@drawable/selector_home" />
+    <!--<item-->
+        <!--android:id="@+id/nav_my_connections"-->
+        <!--android:title=""-->
+        <!--android:icon="@drawable/selector_connections" />-->
+    <item
+        android:id="@+id/nav_chats"
+        android:title=""
+        android:icon="@drawable/selector_chat_list" />
+    <item
+        android:id="@+id/nav_notifications"
+        android:title=""
+    android:icon="@drawable/selector_notifications" />
+    <item
+        android:id="@+id/nav_settings"
+        android:title=""
+        android:icon="@drawable/selector_settings"/>
+</menu>

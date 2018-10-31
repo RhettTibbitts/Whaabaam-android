@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <variable
+            name="model"
+            type="dev.whaabaam.com.data.model.other.CalendarTabData" />
+    </data>
+
+    <FrameLayout xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/calendarTabLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:background="@{model.selected?@drawable/btn_bg_organge:null}"
+        android:layout_marginTop="@dimen/margin_4dp"
+        android:layout_marginBottom="@dimen/margin_4dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:fontFamily="@font/poppins"
+            android:gravity="center"
+            android:minEms="5"
+            android:paddingStart="@dimen/margin_8dp"
+            android:paddingEnd="@dimen/margin_8dp"
+            android:text="@{model.title}"
+            android:textColor="@{model.selected?@color/colorWhite:@color/colorBlack}"
+            android:textSize="13sp"
+            tools:text="Yesterday" />
+    </FrameLayout>
+</layout>

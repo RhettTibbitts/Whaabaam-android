@@ -1,0 +1,63 @@
+<resources>
+    <string name="app_name">WhaaBaam</string>
+    <string name="text_sign_up">Sign up</string>
+    <string name="text_sign_in">Sign in</string>
+    <string name="text_welcome">Welcome</string>
+    <string name="text_signup_msg">Sign Up to discover the new way to meet people around you</string>
+    <string name="text_forgot_password_msg">Please provide your registered email address, We will send you a password reset link.</string>
+    <string name="text_reset_password">Reset Password</string>
+
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="text_close_contact_msg">Now you have immediate access to people who are within close contact or proximity to you.</string>
+    <string name="text_close_contact">Close Contact</string>
+    <string name="text_notifications">Notifications</string>
+    <string name="text_my_connections">My Connections</string>
+    <string name="text_notification_prefs_msg">Select profile keywords for which you would like to be notified when a match is found within close contact. </string>
+    <string name="text_notification_prefs_msg2">Please select from the following options which matches you would like to be notified of when someone comes into close range. </string>
+    <string name="text_confirm_new_password">Confirm New Password</string>
+    <string name="text_update_password">Update Password</string>
+    <string name="text_change_password">Change Password</string>
+    <string name="text_current_password">Current Password</string>
+    <string name="text_new_password">New Password</string>
+    <string name="text_email">Email</string>
+    <string name="text_password">Password</string>
+    <string name="text_first_name">First Name <font color='#ff0000'>*</font></string>
+    <string name="text_last_name">Last Name</string>
+    <string name="text_connect">Connect</string>
+    <string name="text_edit_profile_new_msg">Please provide your complete profile information where you can select what you would like to show vs what you would like to keep on your personal file.</string>
+
+
+    <!--user notifications messages-->
+    <string name="no_internet">Cannot connect to server. Please check your internet connection.</string>
+    <string name="error_email">Please enter a valid email.</string>
+    <string name="error_password">Please enter a valid password.</string>
+    <string name="error_first_name">Please enter a valid first name.</string>
+    <string name="error_last_name">Please enter a valid last name.</string>
+    <string name="error_empty_confirm_password">Please enter a valid confirm password.</string>
+    <string name="error_empty_new_password">Please enter a valid new password.</string>
+    <string name="error_passwords_unequal">Passwords do not match.</string>
+    <string name="text_update_profile">Update Profile</string>
+    <string name="text_save_continue">Save and Continue</string>
+    <string name="text_apply_filters">Apply Filters</string>
+    <string name="text_clear_all">Clear All</string>
+    <string name="text_filter_by">Filter by</string>
+    <string name="text_occupation">Occupation</string>
+    <string name="text_work_website">Work Website</string>
+    <string name="text_add_up_to_three_profile_pictures">Add up to three profile pictures <font color='#ff0000'>*</font></string>
+    <string name="text_capture_time_msg">Also, please notify me when someone stays within close contact for</string>
+    <string name="connection_error">Cannot Connect</string>
+    <string name="reconnect_alert">Reconnecting</string>
+
+
+    <string name="sender_id">1063128925816</string>
+    <string name="text_notification_keywords">Notification Keywords</string>
+    <string name="report">Report</string>
+    <string name="block">Block</string>
+    <string name="remove_connection">Remove Connection</string>
+    <string name="enter_your_message_here">Enter your message here</string>
+    <string name="report_user">Report user</string>
+    <string name="error_accept_terms">Please accept WhaaBaam terms and conditions.</string>
+    <string name="whaabaam_terms_text">By signing up, I agree to the <u><font fgcolor='#f26c53'>Terms and conditions</font></u> for WhaaBaam app usage</string>
+
+
+</resources>

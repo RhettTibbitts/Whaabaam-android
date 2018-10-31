@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:bind="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context="dev.whaabaam.com.ui.forgotpassword.VerifyOTPActivity">
+
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="0dp"
+            android:layout_marginTop="10dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:foreground="?android:attr/selectableItemBackground"
+            android:padding="10dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/back_button"
+            bind:back_nav="@{true}" />
+
+        <ImageView
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="30dp"
+            android:src="@drawable/logo" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins"
+            android:gravity="center"
+            android:text="Forgot Password" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:fontFamily="@font/poppins"
+            android:gravity="center"
+            android:text="Please neter the code that was sent to your email account." />
+
+        <com.chaos.view.PinView
+            android:id="@+id/pinView"
+            style="@style/PinWidget.PinView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="16dp"
+            android:cursorVisible="true"
+            android:inputType="text"
+            android:padding="@dimen/elevation_5dp"
+            android:textColor="@color/colorBlack"
+            android:textSize="18sp"
+            android:textStyle="normal"
+            app:cursorColor="@color/colorPrimary"
+            app:cursorWidth="1dp"
+            app:hideLineWhenFilled="false"
+            app:itemCount="6"
+            app:itemHeight="48dp"
+            app:itemRadius="4dp"
+            app:itemSpacing="4dp"
+            app:itemWidth="48dp"
+            app:lineColor="@color/colorOrange"
+            app:lineWidth="1dp"
+            app:viewType="rectangle" />
+
+
+        <Button
+            android:id="@+id/btnSubmit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/margin_16dp"
+            android:layout_marginStart="@dimen/margin_16dp"
+            android:layout_marginTop="30dp"
+            android:background="@drawable/btn_bg_organge"
+            android:fontFamily="@font/poppins"
+            android:text="Submit "
+            android:textColor="@color/colorWhite" />
+
+        <TextView
+            android:id="@+id/btnResend"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:fontFamily="@font/poppins"
+            android:gravity="center"
+            android:text="Resend"
+            android:textColor="@color/colorOrange" />
+
+    </LinearLayout>
+</layout>

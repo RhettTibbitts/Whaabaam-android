@@ -1,0 +1,62 @@
+{
+  "project_info": {
+    "project_number": "1063128925816",
+    "firebase_url": "https://whaabaam-211110.firebaseio.com",
+    "project_id": "whaabaam-211110",
+    "storage_bucket": "whaabaam-211110.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1063128925816:android:ea1d641fe7e81186",
+        "android_client_info": {
+          "package_name": "dev.whaabaam.com"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1063128925816-vvo9hr9d96pvrdiif2ilbj89eagbfapp.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "dev.whaabaam.com",
+            "certificate_hash": "2c39783ebb121e6582711ac4993cb76752fc9010"
+          }
+        },
+        {
+          "client_id": "1063128925816-fvqmqk9m410ke2offo2351nq041tdqca.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCNlWoSz9BmiGGsq1No_LiTsLuJFrt1-x0"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1063128925816-fvqmqk9m410ke2offo2351nq041tdqca.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "1063128925816-6ohbb3c7t7ukf2u1ejq1t8lr0c86tm4r.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.whaabaam"
+              }
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

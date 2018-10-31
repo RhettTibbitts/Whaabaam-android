@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="@dimen/margin_2dp"
+    android:layout_marginTop="@dimen/margin_2dp">
+
+    <fr.ganfra.materialspinner.MaterialSpinner
+        android:id="@+id/materialSpinner2"
+        style="@style/TextLabel"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:spinnerMode="dialog"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/materialSpinner"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_chainStyle="spread_inside"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:ms_hint="Location" />
+
+    <fr.ganfra.materialspinner.MaterialSpinner
+        android:id="@+id/materialSpinner"
+        style="@style/TextLabel"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:spinnerMode="dialog"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/include"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/materialSpinner2"
+        app:layout_constraintTop_toTopOf="parent"
+        app:ms_hint="" />
+
+    <android.support.v7.widget.SwitchCompat
+        android:id="@+id/include"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:checked="true"
+        app:layout_constraintBottom_toBottomOf="@+id/materialSpinner"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/materialSpinner"
+        app:layout_constraintTop_toTopOf="@+id/materialSpinner" />
+
+
+</android.support.constraint.ConstraintLayout>

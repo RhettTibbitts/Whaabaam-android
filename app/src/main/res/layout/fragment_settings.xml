@@ -1,0 +1,202 @@
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="dev.whaabaam.com.ui.home.settings.SettingsViewModel" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context="dev.whaabaam.com.ui.home.settings.SettingsFragment">
+
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            app:cardElevation="@dimen/margin_8dp">
+
+            <android.support.constraint.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/textView22"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins_bold"
+                    android:text="Settings"
+                    android:textAllCaps="true"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="@dimen/margin_16dp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageView
+                    android:id="@+id/imageView13"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_marginBottom="4dp"
+                    android:layout_marginEnd="16dp"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:foreground="?android:attr/selectableItemBackground"
+                    android:onClick="@{viewModel.onSignOutClick(context)}"
+                    android:src="@drawable/logout"
+                    app:layout_constraintBottom_toBottomOf="@+id/textView22"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/textView22" />
+            </android.support.constraint.ConstraintLayout>
+        </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginBottom="@dimen/margin_8dp"
+            android:layout_marginLeft="@dimen/margin_16dp"
+            android:layout_marginRight="@dimen/margin_16dp"
+            android:layout_marginTop="24dp"
+            android:background="?android:selectableItemBackground"
+            android:onClick="@{viewModel.onNotificationPreferncesClick(context)}"
+            app:cardCornerRadius="@dimen/elevation_5dp"
+            app:cardElevation="4dp"
+            app:contentPadding="@dimen/margin_8dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:drawableStart="@drawable/setting_notification"
+                android:drawableEnd="@drawable/arrow_right"
+                android:drawablePadding="30dp"
+                android:fontFamily="@font/poppins"
+                android:gravity="center_vertical"
+                android:paddingStart="5dp"
+                android:text="Notification Preferences"
+                android:textColor="@color/colorBlack"
+                android:textStyle="bold" />
+
+        </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginBottom="@dimen/margin_8dp"
+            android:layout_marginLeft="@dimen/margin_16dp"
+            android:layout_marginRight="@dimen/margin_16dp"
+            android:layout_marginTop="@dimen/margin_8dp"
+            android:background="?android:selectableItemBackground"
+            android:onClick="@{viewModel.onMyProfileClick(context)}"
+            app:cardCornerRadius="@dimen/elevation_5dp"
+            app:cardElevation="4dp"
+            app:contentPadding="@dimen/margin_8dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:drawableStart="@drawable/my_profile"
+                android:drawableEnd="@drawable/arrow_right"
+                android:drawablePadding="29dp"
+                android:fontFamily="@font/poppins"
+                android:gravity="center_vertical"
+                android:paddingStart="5dp"
+                android:text="My Profile"
+                android:textColor="@color/colorBlack"
+                android:textStyle="bold" />
+
+        </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginBottom="@dimen/margin_8dp"
+            android:layout_marginLeft="@dimen/margin_16dp"
+            android:layout_marginRight="@dimen/margin_16dp"
+            android:layout_marginTop="@dimen/margin_8dp"
+            android:paddingStart="5dp"
+            android:background="?android:selectableItemBackground"
+            android:onClick="@{viewModel.onChangePasswordClick(context)}"
+            app:cardCornerRadius="@dimen/elevation_5dp"
+            app:cardElevation="4dp"
+            app:contentPadding="@dimen/margin_8dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:drawableStart="@drawable/change_password"
+                android:drawableEnd="@drawable/arrow_right"
+                android:drawablePadding="24dp"
+                android:fontFamily="@font/poppins"
+                android:paddingStart="5dp"
+                android:gravity="center_vertical"
+                android:text="Change Password"
+                android:textColor="@color/colorBlack"
+                android:textStyle="bold" />
+
+        </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginBottom="@dimen/margin_8dp"
+            android:layout_marginLeft="@dimen/margin_16dp"
+            android:layout_marginRight="@dimen/margin_16dp"
+            android:layout_marginTop="@dimen/margin_8dp"
+            android:background="?android:selectableItemBackground"
+            android:onClick="@{viewModel.onMyConnectionsClick(context)}"
+            app:cardCornerRadius="@dimen/elevation_5dp"
+            app:cardElevation="4dp"
+            app:contentPadding="@dimen/margin_8dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:drawableEnd="@drawable/arrow_right"
+                android:drawablePadding="18dp"
+                android:drawableStart="@drawable/my_connactions"
+                android:drawableTint="@color/colorBlack"
+                android:fontFamily="@font/poppins"
+                android:gravity="center_vertical"
+                android:text="My Connections"
+                android:textColor="@color/colorBlack"
+                android:textStyle="bold" />
+
+        </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginBottom="@dimen/margin_8dp"
+            android:layout_marginLeft="@dimen/margin_16dp"
+            android:layout_marginRight="@dimen/margin_16dp"
+            android:layout_marginTop="@dimen/margin_8dp"
+            android:background="?android:selectableItemBackground"
+            app:cardCornerRadius="@dimen/elevation_5dp"
+            app:cardElevation="4dp"
+            app:contentPadding="@dimen/margin_8dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:drawableEnd="@drawable/arrow_right"
+                android:drawablePadding="24dp"
+                android:drawableStart="@drawable/email"
+                android:drawableTint="@color/colorBlack"
+                android:fontFamily="@font/poppins"
+                android:gravity="center_vertical"
+                android:paddingStart="5dp"
+                android:onClick="@{viewModel.onContactUsClick()}"
+                android:text="Contact Us"
+                android:textColor="@color/colorBlack"
+                android:textStyle="bold" />
+
+        </android.support.v7.widget.CardView>
+    </LinearLayout>
+</layout>

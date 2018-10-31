@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:bind="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="model"
+            type="com.quickblox.chat.model.QBChatMessage" />
+
+        <import type="android.view.View" />
+    </data>
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/margin_8dp">
+
+        <android.support.constraint.ConstraintLayout
+            android:id="@+id/constraintLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/textView28"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:background="@drawable/bg_chat_sent"
+                android:fontFamily="@font/poppins"
+                android:maxWidth="200dp"
+                android:padding="8dp"
+                android:text="@{model.body??``}"
+                android:textColor="@color/colorWhite"
+                android:visibility="@{(model.body.equals(`null`))?View.GONE:View.VISIBLE}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="a" />
+
+            <FrameLayout
+                android:id="@+id/chatImage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_chat_sent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <ImageView
+                    android:id="@+id/imageView26"
+                    android:layout_width="150dp"
+                    android:layout_height="150dp"
+                    android:padding="8dp"
+                    android:visibility="@{(model.body.equals(`null`))?View.VISIBLE:View.GONE}"
+                    bind:chatAttachment="@{model}"
+                    bind:imageProgress="@{imageProgress}" />
+
+                <TextView
+                    android:id="@+id/imageProgress"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    tools:text="23%" />
+            </FrameLayout>
+        </android.support.constraint.ConstraintLayout>
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:fontFamily="@font/poppins"
+            android:textSize="12sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/constraintLayout"
+            bind:secToDate="@{model.dateSent}"
+            tools:text="12:10 PM" />
+
+    </android.support.constraint.ConstraintLayout>
+</layout>

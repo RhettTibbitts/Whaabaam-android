@@ -1,0 +1,1201 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:bind="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="dev.whaabaam.com.ui.myprofile.MyProfileActivityViewModel" />
+
+
+        <variable
+            name="isFirstRun"
+            type="boolean" />
+        <!--variable to check user has come after registration or from profile-->
+
+        <import type="android.text.TextUtils" />
+
+        <import type="android.view.View" />
+
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context="dev.whaabaam.com.ui.myprofile.MyProfileActivity">
+
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="?android:attr/actionBarSize"
+            app:cardElevation="@dimen/margin_8dp">
+
+            <android.support.constraint.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="16dp"
+                    android:background="?android:attr/selectableItemBackground"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:src="@{isFirstRun?@drawable/home_logo:@drawable/back_button}"
+                    android:visibility="@{isFirstRun?View.GONE:View.VISIBLE}"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    bind:back_nav="@{true}" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins_bold"
+                    android:text="@{isFirstRun?`Complete your profile`:`Edit Profile`}"
+                    android:textAllCaps="true"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="@dimen/margin_16dp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </android.support.constraint.ConstraintLayout>
+        </android.support.v7.widget.CardView>
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:clipToPadding="true"
+            android:scrollbars="none">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:clipToPadding="true"
+                android:orientation="vertical"
+                android:padding="@dimen/margin_16dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins"
+                    android:gravity="center"
+                    android:text="@string/text_edit_profile_new_msg"
+                    android:visibility="@{isFirstRun?View.VISIBLE:View.GONE}" />
+
+                <android.support.constraint.ConstraintLayout
+                    android:layout_width="120dp"
+                    android:layout_height="120dp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="@dimen/margin_8dp">
+
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:id="@+id/currentProfileImage"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_margin="@dimen/margin_2dp"
+                        android:onClick="@{viewModel.onProfileImageClick(context,currentProfileImage)}"
+                        android:src="@drawable/placeholder"
+                        android:transitionName="simple_transition"
+                        app:civ_border_color="@color/colorOrange"
+                        app:civ_border_width="@dimen/margin_8dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        bind:image="@{viewModel.profileImage}"
+                        tools:targetApi="lollipop" />
+
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:onClick="@{viewModel.onAddEditProfile(context)}"
+                        android:padding="@{TextUtils.isEmpty(viewModel.profileImage)?@dimen/dp_0:@dimen/margin_8dp}"
+                        android:src="@{TextUtils.isEmpty(viewModel.profileImage)?@drawable/add_small:@drawable/edit_icon}"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintCircle="@+id/currentProfileImage"
+                        app:layout_constraintCircleAngle="145"
+                        app:layout_constraintCircleRadius="55dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        tools:src="@drawable/edit_icon" />
+                </android.support.constraint.ConstraintLayout>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_8dp"
+                    android:fontFamily="@font/poppins"
+                    android:text="@string/text_add_up_to_three_profile_pictures"
+                    android:visibility="@{isFirstRun?View.VISIBLE:View.GONE}" />
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/profileImagesList"
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:layout_marginTop="@dimen/margin_8dp"
+                    android:layout_marginBottom="@dimen/margin_8dp"
+                    tools:visibility="gone" />
+
+                <android.support.constraint.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_2dp"
+                    android:layout_marginBottom="@dimen/margin_2dp">
+
+                    <android.support.design.widget.TextInputLayout
+                        android:id="@+id/textInputLayout13"
+                        style="@style/TextLabel"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="4dp"
+                        android:layout_marginBottom="0dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="parent"
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <android.support.design.widget.TextInputEditText
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:focusableInTouchMode="true"
+                            android:fontFamily="@font/poppins"
+                            android:hint="@string/text_first_name"
+                            android:textSize="13sp"
+                            android:imeOptions="actionNext"
+                            android:inputType="textPersonName"
+                            android:text="@={viewModel.firstName}" />
+                    </android.support.design.widget.TextInputLayout>
+
+
+                </android.support.constraint.ConstraintLayout>
+
+                <android.support.constraint.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <android.support.design.widget.TextInputLayout
+                        android:id="@+id/textInputLayout12"
+                        style="@style/TextLabel"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@+id/lastNameSwitch"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <android.support.design.widget.TextInputEditText
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:focusableInTouchMode="true"
+                            android:fontFamily="@font/poppins"
+                            android:hint="@string/text_last_name"
+                            android:imeOptions="actionNext"
+                            android:textSize="13sp"
+                            android:inputType="textPersonName"
+                            android:text="@={viewModel.lastName}" />
+                    </android.support.design.widget.TextInputLayout>
+
+                    <android.support.v7.widget.SwitchCompat
+                        android:id="@+id/lastNameSwitch"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginBottom="8dp"
+                        android:checked="@{viewModel.lastNameAccess}"
+                        android:onCheckedChanged="@{viewModel::onCheckedChanged}"
+                        app:layout_constraintBottom_toBottomOf="@+id/textInputLayout12"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintStart_toEndOf="@+id/textInputLayout12" />
+                </android.support.constraint.ConstraintLayout>
+
+                <android.support.constraint.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_2dp"
+                    android:layout_marginBottom="@dimen/margin_2dp">
+
+                    <android.support.design.widget.TextInputLayout
+                        android:id="@+id/email"
+                        style="@style/TextLabel"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@+id/emailSwitch"
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintHorizontal_chainStyle="spread_inside"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <android.support.design.widget.TextInputEditText
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/poppins"
+                            android:hint="Email"
+                            android:textSize="13sp"
+                            android:imeOptions="actionNext"
+                            android:inputType="textEmailAddress"
+                            android:text="@={viewModel.email}"
+                            android:textColor="@color/colorBlack" />
+                    </android.support.design.widget.TextInputLayout>
+
+                    <android.support.v7.widget.SwitchCompat
+                        android:id="@+id/emailSwitch"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginBottom="8dp"
+                        android:checked="@{viewModel.emailAccess}"
+                        android:onCheckedChanged="@{viewModel::onCheckedChanged}"
+                        app:layout_constraintBottom_toBottomOf="@+id/email"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintStart_toEndOf="@+id/email" />
+                </android.support.constraint.ConstraintLayout>
+
+                <android.support.constraint.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_2dp"
+                    android:layout_marginBottom="@dimen/margin_2dp">
+
+                    <android.support.design.widget.TextInputLayout
+                        android:id="@+id/phone"
+                        style="@style/TextLabel"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@+id/phoneSwitch"
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintHorizontal_chainStyle="spread_inside"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <android.support.design.widget.TextInputEditText
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/poppins"
+                            android:hint="Phone"
+                            android:imeOptions="actionNext"
+                            android:inputType="numberSigned"
+                            android:textSize="13sp"
+                            android:text="@={viewModel.phone}"
+                            android:textColor="@color/colorBlack" />
+                    </android.support.design.widget.TextInputLayout>
+
+                    <android.support.v7.widget.SwitchCompat
+                        android:id="@+id/phoneSwitch"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginBottom="8dp"
+                        android:checked="@{viewModel.phoneAccess}"
+                        android:onCheckedChanged="@{viewModel::onCheckedChanged}"
+                        app:layout_constraintBottom_toBottomOf="@+id/phone"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintStart_toEndOf="@+id/phone" />
+                </android.support.constraint.ConstraintLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins"
+                    android:paddingTop="8dp"
+                    android:paddingBottom="4dp"
+                    android:text="Currently lives in:" />
+
+                <android.support.constraint.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_2dp"
+                    android:layout_marginBottom="@dimen/margin_2dp">
+
+                    <fr.ganfra.materialspinner.MaterialSpinner
+                        android:id="@+id/materialSpinner2"
+                        style="@style/TextLabel"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:selectedItemPosition="@{viewModel.statePos}"
+                        android:spinnerMode="dialog"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@+id/materialSpinner"
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintHorizontal_chainStyle="spread_inside"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:ms_hint="State Selection" />
+
+                    <fr.ganfra.materialspinner.MaterialSpinner
+                        android:id="@+id/materialSpinner"
+                        style="@style/TextLabel"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:selectedItemPosition="@{viewModel.cityPos}"
+                        android:spinnerMode="dialog"
+                        app:layout_constraintBottom_toBottomOf="@+id/materialSpinner2"
+                        app:layout_constraintEnd_toStartOf="@+id/include"
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintStart_toEndOf="@+id/materialSpinner2"
+                        app:ms_hint="City Selection"
+                        bind:enabled="@{viewModel.cityPos}" />
+
+                    <android.support.v7.widget.SwitchCompat
+                        android:id="@+id/include"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:checked="@{viewModel.locationAccess}"
+                        android:onCheckedChanged="@{viewModel::onCheckedChanged}"
+                        app:layout_constraintBottom_toBottomOf="@+id/materialSpinner"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintStart_toEndOf="@+id/materialSpinner"
+                        app:layout_constraintTop_toTopOf="@+id/materialSpinner" />
+
+
+                </android.support.constraint.ConstraintLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins"
+                    android:paddingTop="8dp"
+                    android:paddingBottom="4dp"
+                    android:text="From: " />
+
+                <android.support.constraint.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_2dp"
+                    android:layout_marginBottom="@dimen/margin_2dp">
+
+                    <fr.ganfra.materialspinner.MaterialSpinner
+                        android:id="@+id/fromLocationState"
+                        style="@style/TextLabel"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:selectedItemPosition="@{viewModel.fromStatePos}"
+                        android:spinnerMode="dialog"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@+id/fromLocationCity"
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintHorizontal_chainStyle="spread_inside"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:ms_hint="State Selection" />
+
+                    <fr.ganfra.materialspinner.MaterialSpinner
+                        android:id="@+id/fromLocationCity"
+                        style="@style/TextLabel"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:selectedItemPosition="@{viewModel.fromCityPos}"
+                        android:spinnerMode="dialog"
+                        app:layout_constraintBottom_toBottomOf="@+id/fromLocationState"
+                        app:layout_constraintEnd_toStartOf="@+id/fromLocationSwitch"
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintStart_toEndOf="@+id/fromLocationState"
+                        app:ms_hint="City Selection"
+                        bind:enabled="@{viewModel.fromCityPos}" />
+
+                    <android.support.v7.widget.SwitchCompat
+                        android:id="@+id/fromLocationSwitch"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:checked="@{viewModel.fromLocationAccess}"
+                        android:onCheckedChanged="@{viewModel::onCheckedChanged}"
+                        app:layout_constraintBottom_toBottomOf="@+id/fromLocationCity"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintStart_toEndOf="@+id/fromLocationCity"
+                        app:layout_constraintTop_toTopOf="@+id/fromLocationCity" />
+
+
+                </android.support.constraint.ConstraintLayout>
+
+                <android.support.constraint.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_2dp"
+                    android:layout_marginBottom="@dimen/margin_2dp">
+
+                    <android.support.design.widget.TextInputLayout
+                        android:id="@+id/occupation"
+                        style="@style/TextLabel"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@+id/occupationSwitch"
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintHorizontal_chainStyle="spread_inside"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <android.support.design.widget.TextInputEditText
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/poppins"
+                            android:hint="@string/text_occupation"
+                            android:imeOptions="actionNext"
+                            android:textSize="13sp"
+                            android:text="@={viewModel.occupation}"
+                            android:textColor="@color/colorBlack" />
+                    </android.support.design.widget.TextInputLayout>
+
+                    <android.support.v7.widget.SwitchCompat
+                        android:id="@+id/occupationSwitch"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginBottom="8dp"
+                        android:checked="@{viewModel.occupationAccess}"
+                        android:onCheckedChanged="@{viewModel::onCheckedChanged}"
+                        app:layout_constraintBottom_toBottomOf="@+id/occupation"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintStart_toEndOf="@+id/occupation" />
+                </android.support.constraint.ConstraintLayout>
+
+                <android.support.constraint.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp">
+
+                    <TextView
+                        android:id="@+id/textView34"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:fontFamily="@font/poppins_bold"
+                        android:text="Upload Resume"
+                        android:textColor="@color/colorBlack"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <ImageView
+                        android:id="@+id/imageView21"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="2dp"
+                        android:layout_marginTop="16dp"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:onClick="@{viewModel.onUploadResumeClick()}"
+                        app:layout_constraintStart_toStartOf="@+id/textView34"
+                        app:layout_constraintTop_toBottomOf="@+id/textView34"
+                        bind:srcCompat="@drawable/upload_resume" />
+
+                    <ImageView
+                        android:id="@+id/imageView22"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="8dp"
+                        app:layout_constraintBottom_toBottomOf="@+id/imageView23"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/imageView23"
+                        bind:srcCompat="@drawable/gogle_drive" />
+
+                    <ImageView
+                        android:id="@+id/imageView23"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="13dp"
+                        app:layout_constraintBottom_toBottomOf="@+id/imageView24"
+                        app:layout_constraintEnd_toStartOf="@+id/imageView22"
+                        app:layout_constraintTop_toTopOf="@+id/imageView24"
+                        bind:srcCompat="@drawable/icloud" />
+
+                    <ImageView
+                        android:id="@+id/imageView24"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="17dp"
+                        app:layout_constraintBottom_toBottomOf="@+id/textView35"
+                        app:layout_constraintEnd_toStartOf="@+id/imageView23"
+                        app:layout_constraintTop_toTopOf="@+id/textView35"
+                        bind:srcCompat="@drawable/dropbox" />
+
+
+                    <TextView
+                        android:id="@+id/textView35"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="9dp"
+                        android:fontFamily="@font/poppins"
+                        android:text="Or connect to"
+                        app:layout_constraintBottom_toBottomOf="@+id/imageView21"
+                        app:layout_constraintEnd_toStartOf="@+id/imageView24"
+                        app:layout_constraintTop_toTopOf="@+id/imageView21" />
+
+                    <android.support.constraint.ConstraintLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="8dp"
+                        android:visibility="@{viewModel.isResumeAvailable?View.VISIBLE:View.GONE}"
+                        app:layout_constraintBottom_toBottomOf="@+id/textView34"
+                        app:layout_constraintEnd_toEndOf="parent">
+
+                        <TextView
+                            android:id="@+id/textView40"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:layout_marginEnd="8dp"
+                            android:background="@drawable/bg_btn_black_border"
+                            android:fontFamily="@font/poppins"
+                            android:gravity="center"
+                            android:includeFontPadding="false"
+                            android:onClick="@{viewModel.onViewResumeClick()}"
+                            android:paddingStart="8dp"
+                            android:paddingEnd="8dp"
+                            android:text="View Resume"
+                            android:textColor="@color/colorOrange"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toStartOf="@+id/imageView29"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <ImageView
+                            android:id="@+id/imageView29"
+                            android:layout_width="32dp"
+                            android:layout_height="32dp"
+                            android:layout_marginStart="8dp"
+                            android:layout_marginTop="8dp"
+                            android:onClick="@{viewModel.onDeleteResumeClick()}"
+                            android:src="@drawable/close"
+                            app:layout_constraintStart_toEndOf="@+id/textView40"
+                            app:layout_constraintTop_toTopOf="parent" />
+                    </android.support.constraint.ConstraintLayout>
+                </android.support.constraint.ConstraintLayout>
+
+
+                <android.support.constraint.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_2dp"
+                    android:layout_marginBottom="@dimen/margin_2dp">
+
+                    <android.support.design.widget.TextInputLayout
+                        android:id="@+id/facebook"
+                        style="@style/TextLabel"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@+id/facebookSwitch"
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintHorizontal_chainStyle="spread_inside"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <android.support.design.widget.TextInputEditText
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/poppins"
+                            android:textSize="13sp"
+                            android:hint="Facebook username"
+                            android:imeOptions="actionNext"
+                            android:text="@={viewModel.facebook}"
+                            android:textColor="@color/colorBlack" />
+                    </android.support.design.widget.TextInputLayout>
+
+                    <android.support.v7.widget.SwitchCompat
+                        android:id="@+id/facebookSwitch"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginBottom="8dp"
+                        android:checked="@{viewModel.facebookAccess}"
+                        android:onCheckedChanged="@{viewModel::onCheckedChanged}"
+                        app:layout_constraintBottom_toBottomOf="@+id/facebook"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintStart_toEndOf="@+id/facebook" />
+                </android.support.constraint.ConstraintLayout>
+
+                <android.support.constraint.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_2dp"
+                    android:layout_marginBottom="@dimen/margin_2dp">
+
+                    <android.support.design.widget.TextInputLayout
+                        android:id="@+id/linkedin"
+                        style="@style/TextLabel"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@+id/linkedinSwitch"
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintHorizontal_chainStyle="spread_inside"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <android.support.design.widget.TextInputEditText
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/poppins"
+                            android:hint="Linkedin username"
+                            android:imeOptions="actionNext"
+                            android:textSize="13sp"
+                            android:text="@={viewModel.linkedin}"
+                            android:textColor="@color/colorBlack" />
+                    </android.support.design.widget.TextInputLayout>
+
+                    <android.support.v7.widget.SwitchCompat
+                        android:id="@+id/linkedinSwitch"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginBottom="8dp"
+                        android:checked="@{viewModel.linkedinAccess}"
+                        android:onCheckedChanged="@{viewModel::onCheckedChanged}"
+                        app:layout_constraintBottom_toBottomOf="@+id/linkedin"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintStart_toEndOf="@+id/linkedin" />
+                </android.support.constraint.ConstraintLayout>
+
+                <android.support.constraint.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_2dp"
+                    android:layout_marginBottom="@dimen/margin_2dp">
+
+                    <android.support.design.widget.TextInputLayout
+                        android:id="@+id/instagram"
+                        style="@style/TextLabel"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@+id/instagramSwitch"
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintHorizontal_chainStyle="spread_inside"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <android.support.design.widget.TextInputEditText
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/poppins"
+                            android:textSize="13sp"
+                            android:hint="Instagram username"
+                            android:imeOptions="actionNext"
+                            android:text="@={viewModel.instagram}"
+                            android:textColor="@color/colorBlack" />
+                    </android.support.design.widget.TextInputLayout>
+
+                    <android.support.v7.widget.SwitchCompat
+                        android:id="@+id/instagramSwitch"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginBottom="8dp"
+                        android:checked="@{viewModel.instagramAccess}"
+                        android:onCheckedChanged="@{viewModel::onCheckedChanged}"
+                        app:layout_constraintBottom_toBottomOf="@+id/instagram"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintStart_toEndOf="@+id/instagram" />
+                </android.support.constraint.ConstraintLayout>
+
+                <android.support.constraint.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_2dp"
+                    android:layout_marginBottom="@dimen/margin_2dp">
+
+                    <android.support.design.widget.TextInputLayout
+                        android:id="@+id/twitter"
+                        style="@style/TextLabel"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@+id/twitterSwitch"
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintHorizontal_chainStyle="spread_inside"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <android.support.design.widget.TextInputEditText
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/poppins"
+                            android:hint="Twitter username"
+                            android:imeOptions="actionNext"
+                            android:textSize="13sp"
+                            android:text="@={viewModel.twitter}"
+                            android:textColor="@color/colorBlack" />
+                    </android.support.design.widget.TextInputLayout>
+
+                    <android.support.v7.widget.SwitchCompat
+                        android:id="@+id/twitterSwitch"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginBottom="8dp"
+                        android:checked="@{viewModel.twitterAccess}"
+                        android:onCheckedChanged="@{viewModel::onCheckedChanged}"
+                        app:layout_constraintBottom_toBottomOf="@+id/twitter"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintStart_toEndOf="@+id/twitter" />
+                </android.support.constraint.ConstraintLayout>
+
+                <android.support.constraint.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_2dp"
+                    android:layout_marginBottom="@dimen/margin_2dp">
+
+                    <android.support.design.widget.TextInputLayout
+                        android:id="@+id/workWebsite"
+                        style="@style/TextLabel"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@+id/workWebsiteSwitch"
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintHorizontal_chainStyle="spread_inside"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <android.support.design.widget.TextInputEditText
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/poppins"
+                            android:hint="@string/text_work_website"
+                            android:imeOptions="actionNext"
+                            android:textSize="13sp"
+                            android:text="@={viewModel.workWebsite}"
+                            android:textColor="@color/colorBlack" />
+                    </android.support.design.widget.TextInputLayout>
+
+                    <android.support.v7.widget.SwitchCompat
+                        android:id="@+id/workWebsiteSwitch"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginBottom="8dp"
+                        android:checked="@{viewModel.workAccess}"
+                        android:onCheckedChanged="@{viewModel::onCheckedChanged}"
+                        app:layout_constraintBottom_toBottomOf="@+id/workWebsite"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintStart_toEndOf="@+id/workWebsite" />
+                </android.support.constraint.ConstraintLayout>
+
+                <android.support.constraint.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_2dp"
+                    android:layout_marginBottom="@dimen/margin_2dp">
+
+                    <android.support.design.widget.TextInputLayout
+                        android:id="@+id/education"
+                        style="@style/TextLabel"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@+id/educationSwitch"
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintHorizontal_chainStyle="spread_inside"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <android.support.design.widget.TextInputEditText
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/poppins"
+                            android:hint="Education"
+                            android:textSize="13sp"
+                            android:imeOptions="actionNext"
+                            android:text="@={viewModel.education}"
+                            android:textColor="@color/colorBlack" />
+                    </android.support.design.widget.TextInputLayout>
+
+                    <android.support.v7.widget.SwitchCompat
+                        android:id="@+id/educationSwitch"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginBottom="8dp"
+                        android:checked="@{viewModel.educationAccess}"
+                        android:onCheckedChanged="@{viewModel::onCheckedChanged}"
+                        app:layout_constraintBottom_toBottomOf="@+id/education"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintStart_toEndOf="@+id/education" />
+                </android.support.constraint.ConstraintLayout>
+
+                <android.support.constraint.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_2dp"
+                    android:layout_marginBottom="@dimen/margin_2dp">
+
+                    <android.support.design.widget.TextInputLayout
+                        android:id="@+id/highSchool"
+                        style="@style/TextLabel"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@+id/highSchoolSwitch"
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintHorizontal_chainStyle="spread_inside"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <android.support.design.widget.TextInputEditText
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/poppins"
+                            android:hint="High School"
+                            android:textSize="13sp"
+                            android:imeOptions="actionNext"
+                            android:text="@={viewModel.highSchool}"
+                            android:textColor="@color/colorBlack" />
+                    </android.support.design.widget.TextInputLayout>
+
+                    <android.support.v7.widget.SwitchCompat
+                        android:id="@+id/highSchoolSwitch"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginBottom="8dp"
+                        android:checked="@{viewModel.highSchoolAccess}"
+                        android:onCheckedChanged="@{viewModel::onCheckedChanged}"
+                        app:layout_constraintBottom_toBottomOf="@+id/highSchool"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintStart_toEndOf="@+id/highSchool" />
+                </android.support.constraint.ConstraintLayout>
+
+                <android.support.constraint.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_2dp"
+                    android:layout_marginBottom="@dimen/margin_2dp">
+
+                    <android.support.design.widget.TextInputLayout
+                        android:id="@+id/college"
+                        style="@style/TextLabel"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@+id/collegeSwitch"
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintHorizontal_chainStyle="spread_inside"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <android.support.design.widget.TextInputEditText
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/poppins"
+                            android:hint="College"
+                            android:imeOptions="actionNext"
+                            android:textSize="13sp"
+                            android:text="@={viewModel.college}"
+                            android:textColor="@color/colorBlack" />
+                    </android.support.design.widget.TextInputLayout>
+
+                    <android.support.v7.widget.SwitchCompat
+                        android:id="@+id/collegeSwitch"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginBottom="8dp"
+                        android:checked="@{viewModel.collegeAccess}"
+                        android:onCheckedChanged="@{viewModel::onCheckedChanged}"
+                        app:layout_constraintBottom_toBottomOf="@+id/college"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintStart_toEndOf="@+id/college" />
+                </android.support.constraint.ConstraintLayout>
+
+                <android.support.constraint.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_2dp"
+                    android:layout_marginBottom="@dimen/margin_2dp">
+
+                    <android.support.design.widget.TextInputLayout
+                        android:id="@+id/almaMatter"
+                        style="@style/TextLabel"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@+id/almaMatterSwitch"
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintHorizontal_chainStyle="spread_inside"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <android.support.design.widget.TextInputEditText
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/poppins"
+                            android:hint="Alma Matter"
+                            android:imeOptions="actionNext"
+                            android:textSize="13sp"
+                            android:text="@={viewModel.almaMatter}"
+                            android:textColor="@color/colorBlack" />
+                    </android.support.design.widget.TextInputLayout>
+
+                    <android.support.v7.widget.SwitchCompat
+                        android:id="@+id/almaMatterSwitch"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginBottom="8dp"
+                        android:checked="@{viewModel.almaMatterAccess}"
+                        android:onCheckedChanged="@{viewModel::onCheckedChanged}"
+                        app:layout_constraintBottom_toBottomOf="@+id/almaMatter"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintStart_toEndOf="@+id/almaMatter" />
+                </android.support.constraint.ConstraintLayout>
+
+                <android.support.constraint.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_2dp"
+                    android:layout_marginBottom="@dimen/margin_2dp">
+
+                    <android.support.design.widget.TextInputLayout
+                        android:id="@+id/likesHobbies"
+                        style="@style/TextLabel"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@+id/likesHobbiesSwitch"
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintHorizontal_chainStyle="spread_inside"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <android.support.design.widget.TextInputEditText
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/poppins"
+                            android:hint="Likes/Hobbies/Interests"
+                            android:imeOptions="actionNext"
+                            android:textSize="13sp"
+                            android:text="@={viewModel.likes}"
+                            android:textColor="@color/colorBlack" />
+                    </android.support.design.widget.TextInputLayout>
+
+                    <android.support.v7.widget.SwitchCompat
+                        android:id="@+id/likesHobbiesSwitch"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginBottom="8dp"
+                        android:checked="@{viewModel.likesAccess}"
+                        android:onCheckedChanged="@{viewModel::onCheckedChanged}"
+                        app:layout_constraintBottom_toBottomOf="@+id/likesHobbies"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintStart_toEndOf="@+id/likesHobbies" />
+                </android.support.constraint.ConstraintLayout>
+
+                <android.support.constraint.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_2dp"
+                    android:layout_marginBottom="@dimen/margin_2dp">
+
+                    <fr.ganfra.materialspinner.MaterialSpinner
+                        android:id="@+id/military"
+                        style="@style/TextLabel"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="8dp"
+                        android:selectedItemPosition="@{viewModel.militaryPos}"
+                        android:spinnerMode="dialog"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@+id/militarySwitch"
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintHorizontal_chainStyle="spread_inside"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:ms_hint="Military" />
+
+                    <android.support.v7.widget.SwitchCompat
+                        android:id="@+id/militarySwitch"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:checked="@{viewModel.militaryAccess}"
+                        android:onCheckedChanged="@{viewModel::onCheckedChanged}"
+                        app:layout_constraintBaseline_toBaselineOf="@+id/military"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintStart_toEndOf="@+id/military" />
+                </android.support.constraint.ConstraintLayout>
+
+                <android.support.constraint.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_2dp"
+                    android:layout_marginBottom="@dimen/margin_2dp">
+
+                    <fr.ganfra.materialspinner.MaterialSpinner
+                        android:id="@+id/political"
+                        style="@style/TextLabel"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="8dp"
+                        android:selectedItemPosition="@{viewModel.politicalPos}"
+                        android:spinnerMode="dialog"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@+id/politicalSwitch"
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintHorizontal_chainStyle="spread_inside"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:ms_hint="Political Affiliation" />
+
+                    <android.support.v7.widget.SwitchCompat
+                        android:id="@+id/politicalSwitch"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:checked="@{viewModel.politicalAccess}"
+                        android:onCheckedChanged="@{viewModel::onCheckedChanged}"
+                        app:layout_constraintBaseline_toBaselineOf="@+id/political"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintStart_toEndOf="@+id/political" />
+                </android.support.constraint.ConstraintLayout>
+
+                <android.support.constraint.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_2dp"
+                    android:layout_marginBottom="@dimen/margin_2dp">
+
+                    <fr.ganfra.materialspinner.MaterialSpinner
+                        android:id="@+id/religion"
+                        style="@style/TextLabel"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="8dp"
+                        android:selectedItemPosition="@{viewModel.religionPos}"
+                        android:spinnerMode="dialog"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@+id/religionSwitch"
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintHorizontal_chainStyle="spread_inside"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:ms_hint="Religion" />
+
+                    <android.support.v7.widget.SwitchCompat
+                        android:id="@+id/religionSwitch"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:checked="@{viewModel.religionAccess}"
+                        android:onCheckedChanged="@{viewModel::onCheckedChanged}"
+                        app:layout_constraintBaseline_toBaselineOf="@+id/religion"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintStart_toEndOf="@+id/religion" />
+                </android.support.constraint.ConstraintLayout>
+
+                <android.support.constraint.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_2dp"
+                    android:layout_marginBottom="@dimen/margin_2dp">
+
+                    <fr.ganfra.materialspinner.MaterialSpinner
+                        android:id="@+id/relationship"
+                        style="@style/TextLabel"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="8dp"
+                        android:selectedItemPosition="@{viewModel.relationshipPos}"
+                        android:spinnerMode="dialog"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@+id/include4"
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintHorizontal_chainStyle="spread_inside"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:ms_hint="Relationship Status" />
+
+                    <android.support.v7.widget.SwitchCompat
+                        android:id="@+id/include4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:checked="@{viewModel.relationshipAccess}"
+                        android:onCheckedChanged="@{viewModel::onCheckedChanged}"
+                        app:layout_constraintBaseline_toBaselineOf="@+id/relationship"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintStart_toEndOf="@+id/relationship" />
+                </android.support.constraint.ConstraintLayout>
+
+                <android.support.constraint.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_2dp"
+                    android:layout_marginBottom="@dimen/margin_2dp">
+
+                    <TextView
+                        android:id="@+id/tvFamily"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginBottom="8dp"
+                        android:drawableStart="@drawable/add_medium"
+                        android:drawablePadding="10dp"
+                        android:fontFamily="@font/poppins"
+                        android:gravity="center_vertical"
+                        android:onClick="@{viewModel.OnFamilyMemberClick()}"
+                        android:text="Family member"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@+id/include5"
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintHorizontal_chainStyle="spread_inside"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <android.support.v7.widget.SwitchCompat
+                        android:id="@+id/include5"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:checked="@{viewModel.familyAccess}"
+                        android:onCheckedChanged="@{viewModel::onCheckedChanged}"
+                        app:layout_constraintBaseline_toBaselineOf="@+id/tvFamily"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintStart_toEndOf="@+id/tvFamily" />
+                </android.support.constraint.ConstraintLayout>
+
+
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/margin_16dp"
+                    android:background="@drawable/btn_bg_organge"
+                    android:fontFamily="@font/poppins"
+                    android:onClick="@{viewModel.onUpdateClick()}"
+                    android:text="@{isFirstRun?@string/text_save_continue:@string/text_update_profile}"
+                    android:textColor="@color/colorWhite" />
+
+            </LinearLayout>
+
+        </ScrollView>
+
+    </LinearLayout>
+</layout>

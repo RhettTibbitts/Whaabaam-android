@@ -1,0 +1,26 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="cardViewStyle">@style/CardView</item>
+        <item name="tabStyle">@style/Widget.Design.TabLayout</item>
+        <item name="android:windowContentTransitions">true</item>
+    </style>
+
+    <!--custom styles -->
+    <style name="TextLabel" parent="AppTheme">
+        <!-- Hint color and label color in FALSE state -->
+        <item name="android:textColorHint">@color/colorLightGrey</item>
+        <item name="android:fontFamily">@font/poppins</item>
+        <!-- Label color in TRUE state and bar color FALSE and TRUE State -->
+        <item name="colorAccent">@color/colorOrange</item>
+        <item name="colorControlNormal">@color/colorLightGrey</item>
+        <item name="android:textSize">14sp</item>
+        <item name="colorControlActivated">@color/colorLightGrey</item>
+    </style>
+
+</resources>

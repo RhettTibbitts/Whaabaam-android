@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="model"
+            type="dev.whaabaam.com.data.model.other.FilterData" />
+
+        <variable
+            name="callback"
+            type="dev.whaabaam.com.ui.notificationprefs.OnNotificationPrefsCallback" />
+
+        <import type="android.view.View" />
+    </data>
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/itemPrefs"
+        android:layout_width="match_parent"
+        android:layout_height="90dp"
+        android:layout_margin="@dimen/margin_4dp"
+        app:cardBackgroundColor="@{model.selected.equals(`true`)?@color/colorOrange:@color/colorWhite}"
+        app:cardCornerRadius="@dimen/elevation_5dp"
+        app:cardElevation="@{model.selected.equals(`true`)?@dimen/dp_0:@dimen/margin_4dp}"
+        tools:cardBackgroundColor="@color/colorOrange">
+
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/textView24"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins"
+                android:text="@{model.name}"
+                android:textColor="@{model.selected.equals(`true`)?@color/colorWhite:@color/colorBlack}"
+                app:layout_constraintBottom_toTopOf="@+id/imageView15"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintHorizontal_chainStyle="packed"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_chainStyle="packed"
+                tools:text="State" />
+
+            <ImageView
+                android:id="@+id/imageView15"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_marginTop="2dp"
+                android:src="@drawable/check_white"
+                android:visibility="@{model.selected.equals(`true`)?View.VISIBLE:View.GONE}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView24" />
+        </android.support.constraint.ConstraintLayout>
+
+    </android.support.v7.widget.CardView>
+</layout>

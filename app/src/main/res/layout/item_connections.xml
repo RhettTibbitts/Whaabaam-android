@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:bind="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="model"
+            type="dev.whaabaam.com.data.model.other.CloseContactsData" />
+
+        <import type="android.view.View" />
+    </data>
+
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:layout_marginLeft="@dimen/corner_10dp"
+        android:layout_marginTop="@dimen/margin_4dp"
+        android:layout_marginRight="@dimen/corner_10dp"
+        android:layout_marginBottom="@dimen/margin_4dp"
+        android:clickable="true"
+        android:clipToPadding="true"
+        android:focusable="true"
+        android:foreground="?android:attr/selectableItemBackground"
+        app:cardCornerRadius="2dp"
+        app:cardElevation="2dp"
+        app:cardPreventCornerOverlap="true"
+        app:contentPaddingBottom="@dimen/margin_4dp"
+        app:contentPaddingLeft="@dimen/margin_8dp"
+        app:contentPaddingRight="@dimen/margin_8dp"
+        app:contentPaddingTop="@dimen/margin_4dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <android.support.constraint.ConstraintLayout
+                android:id="@+id/userDataView"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_alignParentStart="true"
+                android:layout_centerVertical="true"
+                android:layout_toStartOf="@id/imageView10">
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/imageView7"
+                    android:layout_width="55dp"
+                    android:layout_height="55dp"
+                    android:src="@drawable/dummy_profile"
+                    app:layout_constraintBottom_toBottomOf="@+id/textView17"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/textView15"
+                    bind:image="@{model.user_info.image.thumb}" />
+
+                <TextView
+                    android:id="@+id/textView15"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:maxLines="1"
+                    android:fontFamily="@font/poppins_bold"
+                    android:includeFontPadding="false"
+                    android:text="@{model.user_info.first_name +` `+model.user_info.last_name??``}"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="@dimen/margin_16dp"
+                    app:layout_constraintBottom_toTopOf="@+id/textView16"
+                    app:layout_constraintStart_toEndOf="@+id/imageView7"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_chainStyle="packed"
+                    tools:text="Name" />
+
+                <TextView
+                    android:id="@+id/textView16"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:fontFamily="@font/poppins"
+                    android:includeFontPadding="false"
+                    android:maxLength="25"
+                    android:maxLines="1"
+                    android:text="@{model.address}"
+                    android:textSize="12sp"
+
+                    android:visibility="@{model.address==null?View.GONE:View.VISIBLE}"
+                    app:layout_constraintBottom_toTopOf="@+id/textView17"
+                    app:layout_constraintStart_toStartOf="@+id/textView15"
+                    app:layout_constraintTop_toBottomOf="@+id/textView15"
+                    tools:text="4:00 am" />
+
+                <TextView
+                    android:id="@+id/textView17"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins"
+                    android:includeFontPadding="false"
+                    android:text="@{model.updated_at}"
+                    android:textSize="12sp"
+                    android:visibility="@{model.updated_at==null?View.GONE:View.VISIBLE}"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/textView16"
+                    app:layout_constraintTop_toBottomOf="@+id/textView16"
+                    tools:text="4:00 am" />
+
+            </android.support.constraint.ConstraintLayout>
+
+            <ImageView
+                android:id="@+id/imageView10"
+                android:layout_width="28dp"
+                android:layout_height="28dp"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:layout_gravity="end|center_vertical"
+                android:layout_marginEnd="8dp"
+                android:contentDescription="@null"
+                android:padding="@dimen/margin_2dp"
+                android:src="@drawable/message"
+                bind:close_contacts="@{model.req_status}" />
+        </RelativeLayout>
+
+    </android.support.v7.widget.CardView>
+</layout>
